@@ -18,9 +18,8 @@ int main(){
   const float suelo = 500.0;
   const float gravity =9.8;
 
-  class proyectil:public CircleShape{
+   class proyectil{
       public:
-          float radius=10;
           float angle,range;
           float max_height;
           float v_0;
@@ -29,11 +28,12 @@ int main(){
           Point C;
           float p;
           Time t1;
+          CircleShape proy;
           proyectil(float a, float b,float angle,float v_0){
-
+              proy.setRadius(10);
               C.x=a;
               C.y=b;
-              setPosition(C.x,C.y);
+              proy.setPosition(C.x,C.y);
               range = (pow(v_0,2) * sin((2 * angle) * PI/180)) / 9.8;
               max_height = (pow(v_0,2) * pow(sin(angle * PI/180),2)) / (2*9.8);
               time=(2*pow(v_0,2) * sin((2 * angle) )) / 9.8;
@@ -44,16 +44,15 @@ int main(){
               cout << "V( " << V.x << " , " << V.y << " )" << endl;
           }
           void movimiento(){
-          C.x+=1;
+          C.x+=0.1;
           C.y=(pow(C.x -V.x, 2) + (4 * V.y * p)) / (4*p);
-          setPosition(C.x,C.y);
+          proy.setPosition(C.x,C.y);
           }
 
   };
 
 
-  //la ecuacion de la general de la parábola será:
-  //Ax^2 + Bx + Cy + D = 0
+ 
 
   //Point coord(x , y);
   RectangleShape line(Vector2f(800, 5)); //linea base
