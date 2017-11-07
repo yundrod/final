@@ -18,7 +18,7 @@ int main(){
   const float suelo = 500.0;
   const float gravity =9.8;
 
-   class proyectil{
+  class proyectil{
       public:
           float angle,range;
           float max_height;
@@ -44,26 +44,27 @@ int main(){
               cout << "V( " << V.x << " , " << V.y << " )" << endl;
           }
           void movimiento(){
-          C.x+=0.1;
+          C.x+=0.001;
           C.y=(pow(C.x -V.x, 2) + (4 * V.y * p)) / (4*p);
           proy.setPosition(C.x,C.y);
           }
 
   };
 
-
- 
-
   //Point coord(x , y);
   RectangleShape line(Vector2f(800, 5)); //linea base
-  line.setPosition(0,suelo);
+  line.setPosition(0,suelo);;
   CircleShape player1(10);
   player1.setPosition(0.0, suelo-20);
-
-
+      float angle, v_0;
+  cout << "Inserta el angulo: ";
+  cin >> angle;
+  cout << "Inserta la velocidad inicial: ";
+  cin >> v_0;
+  proyectil bomba(0.0,suelo-20,angle,v_0);
 
   RenderWindow window(VideoMode(800, 600), "My render");
-    float angle, v_0;
+
   while(window.isOpen()){
     Event event;
     while (window.pollEvent(event))
@@ -75,18 +76,13 @@ int main(){
 	  window.close()coord.y = (pow(coord.x - h, 2) + (4 * k * p)) / (4*p);
       }*/}
     window.clear(Color(0,0,0));
-    cout << "Inserta el angulo: ";
-              cin >> angle;
-              cout << "Inserta la velocidad inicial: ";
-              cin >> v_0;
-    proyectil bomba(0.0,suelo-20,angle,v_0);
 
-    while (bomba.C.x<bomba.range-20){
+    while (bomba.C.x<bomba.range+20){
     // clear the window with black color
     window.clear(Color(0,0,0));
     // draw everything here...
     window.draw(player1);
-    window.draw(bomba);
+    window.draw(bomba.proy);
     window.draw(line);
     // end the current frame
     window.display();
