@@ -44,7 +44,7 @@ int main(){
               cout << "V( " << V.x << " , " << V.y << " )" << endl;
           }
           void movimiento(){
-          C.x+=0.001;
+          C.x+=0.1;
           C.y=(pow(C.x -V.x, 2) + (4 * V.y * p)) / (4*p);
           proy.setPosition(C.x,C.y);
           }
